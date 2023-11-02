@@ -1,9 +1,9 @@
 name: Mi Demo con React
 on: push
 jobs:
-   test:
-     runs-on: ubuntu-latest
-     steps:
+  test:
+    runs-on: ubuntu-latest
+    steps:
       - name: Obtener código
         uses: actions/checkout@v4
       - name: Instalar Node.JS
@@ -11,12 +11,13 @@ jobs:
         with:
           node-version: 18
       - name: Instalar Dependencias
-        run: npm ci
+        run: npm install
       - name: Ejecutar pruebas
         run: npm test
-   deploy:
-     runs-on: ubuntu-latest
-     steps:
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
       - name: Obtener código
         uses: actions/checkout@v4
       - name: Instalar Node.JS
